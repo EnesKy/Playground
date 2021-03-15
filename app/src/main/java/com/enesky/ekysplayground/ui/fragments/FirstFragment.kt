@@ -1,6 +1,8 @@
 package com.enesky.ekysplayground.ui.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
@@ -9,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.enesky.ekysplayground.R
 import com.enesky.ekysplayground.databinding.FragmentFirstBinding
-import com.enesky.ekysplayground.ext.startAnim
+import com.enesky.ekysplayground.ext.startAnimation
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -32,10 +34,17 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         binding.fab.setOnClickListener {
             binding.fab.isVisible = false
             binding.circle.isVisible = true
-            binding.circle.startAnim(animation) {
-                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-                binding.circle.isVisible = false
-            }
+            binding.circle.startAnimation(
+                animation = animation,
+                onAnimStart = {
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                    }, 300)
+                },
+                onAnimEnd = {
+                    binding.circle.isVisible = false
+                }
+            )
         }
 
     }
