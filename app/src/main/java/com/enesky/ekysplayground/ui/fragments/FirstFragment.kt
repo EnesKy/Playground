@@ -13,10 +13,6 @@ import com.enesky.ekysplayground.R
 import com.enesky.ekysplayground.databinding.FragmentFirstBinding
 import com.enesky.ekysplayground.ext.startAnimation
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-
 class FirstFragment : Fragment(R.layout.fragment_first) {
 
     private lateinit var binding: FragmentFirstBinding
@@ -26,7 +22,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
         binding = FragmentFirstBinding.bind(view)
 
-        val animation = AnimationUtils.loadAnimation(context, R.anim.anim_fill_screen).apply {
+        val animation = AnimationUtils.loadAnimation(context, R.anim.fill_screen).apply {
             duration = 500
             interpolator = AccelerateDecelerateInterpolator()
         }
@@ -45,6 +41,10 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
                     binding.circle.isVisible = false
                 }
             )
+        }
+
+        binding.fab2.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_ThirdFragment)
         }
 
     }

@@ -13,10 +13,6 @@ import com.enesky.ekysplayground.R
 import com.enesky.ekysplayground.databinding.FragmentSecondBinding
 import com.enesky.ekysplayground.ext.startAnimation
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
-
 class SecondFragment : Fragment(R.layout.fragment_second) {
 
     private lateinit var binding: FragmentSecondBinding
@@ -30,7 +26,7 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
     }
 
     private fun setClickListeners() {
-        val animation = AnimationUtils.loadAnimation(context, R.anim.anim_defill_screen).apply {
+        val animation = AnimationUtils.loadAnimation(context, R.anim.defill_screen).apply {
             duration = 500
             interpolator = AccelerateDecelerateInterpolator()
         }
@@ -58,8 +54,6 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
                 override fun handleOnBackPressed() {
                     if (findNavController().currentDestination?.label == getString(R.string.second_fragment_label))
                         binding.fab.performClick()
-                    else
-                        findNavController().navigateUp()
                 }
             }
         )

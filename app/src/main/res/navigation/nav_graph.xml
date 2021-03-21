@@ -13,7 +13,14 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/SecondFragment" />
+
+        <action
+            android:id="@+id/action_FirstFragment_to_ThirdFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/thirdFragment"
+            app:enterAnim="@anim/from_left"/>
     </fragment>
 
     <fragment
@@ -24,7 +31,21 @@
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/FirstFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/thirdFragment"
+        android:name="com.enesky.ekysplayground.ui.fragments.ThirdFragment"
+        android:label="Third Fragment"
+        tools:layout="@layout/fragment_third">
+
+        <action
+            android:id="@+id/action_ThirdFragment_to_FirstFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/FirstFragment"
+            app:exitAnim="@anim/to_right"/>
     </fragment>
 
 </navigation>
